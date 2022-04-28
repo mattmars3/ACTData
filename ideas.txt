@@ -1,15 +1,11 @@
-I want the project to record, manipulate, and display my scores for all ACT practice tests that I take
-Approaches:
-    Create a PracticeTest class that records: Date, amountCorrect, amountTotal, Notes, time
+Project Structure:
+Have a class that represents a test
 
-PracticeTest class
-Specifications:
-    - Date field that records the date of the practice tests
-    - Amount correct which would represent the numerator in a score or the amount of answers correct of the next field - amountTotal
-    - Amount of total questions answered
-    - Notes if wanted so I know what to improve
-    - time to see if there is any correlation
-
-----------------------------------------------------------------
-How will program work??
+--- Prompt the user ---
+What would you like to do?
+    Add a score
+        Pick Subject
+        Enter Answers correct
+        Enter Total questions
+        Was it today? (y/N)
 
