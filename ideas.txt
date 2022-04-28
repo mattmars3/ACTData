@@ -1,6 +1,10 @@
 Project Structure:
 Have a class that represents a test
 
+Libraries to use
+- Inquirer to prompt the user
+- 
+
 --- Prompt the user ---
 What would you like to do?
     Add a score
