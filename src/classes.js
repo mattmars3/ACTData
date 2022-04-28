@@ -27,22 +27,44 @@ export default class PracticeTest {
         this.notes = notes;
     }
 
-    practiceTimeToString() {
-        let returnString = "";
-        return Math.floor(this.timeToComplete / 60).toString() + ":" + this.timeToComplete % 60;
+    // Turn the practice time from seconds to a colonized time
+    practiceTimeToString(format) {
+        if (format) {
+            return Math.floor(this.timeToComplete / 60).toString() + ":" + this.timeToComplete % 60;
+        }
+        return this.practiceTime;
     }
 
-    static capitalize(string) {
-        return string.substring(0, 1).toUpperCase() + string.substring(1);
+    // returns date taken in string format
+    getDateString() {
+        return this.practiceDate;
+    }
+    // return the date taken as a date object
+    getPracticeDateObject() {
+        const theDate = this.getDateString().split("-")
+        return new Date(theDate[0], theDate[1], theDate[2]);
     }
 
-    getSubject() {return this.subject;}
+    getSubject() {
+        return this.subject.substring(0, 1).toUpperCase() + this.subject.substring(1);
+    }
+
+    getScoreString() {
+        return this.amntCorrect.toString() + "/" + this.totalQuestions.toString();
+    }
+
+    getNotes() {
+        if (notes == "") {
+            return "No notes."
+        } else {
+            return this.notes;
+        }
+    }
+
 
     printSummary() {
-        console.log(PracticeTest.capitalize(this.subject) + " Practice Test on " + this.practiceDate + "\nScore: " + this.amntCorrect + "/" + this.totalQuestions)
-        console.log("Time: " + this.practiceTimeToString())
-        if (this.notes != "") {
-            console.log("Notes: " + notes)
-        }
+        console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString())
+        console.log("Time: " + this.practiceTimeToString(true))
+        console.log("Notes: " + this.getNotes())
     }
 }
