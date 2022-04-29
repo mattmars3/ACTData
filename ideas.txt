@@ -13,3 +13,14 @@ What would you like to do?
         Enter Total questions
         Was it today? (y/N)
 
+What is complete:
+- The PracticeTest class
+- The file writing and reading class
+
+What to do next!
+- Continue working on the TestList class
+- polish the entire program
+- work on the UI
+
+
+- implement some method of backup should someone accidently screw something up

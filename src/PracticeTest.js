@@ -71,7 +71,6 @@ export default class PracticeTest {
         }
     }
 
-
     printSummary() {
         console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString())
         console.log("Time: " + this.practiceTimeToString(true))

@@ -1,4 +1,4 @@
-import PracticeTest from './classes.js';
+import PracticeTest from './PracticeTest.js';
 import * as fs from 'fs';
 
 const testTest = new PracticeTest("english", 5, 6, '5:20')
@@ -11,11 +11,18 @@ export function getTestArray() {
     for (let i in testArray) {
         finalTestArray.push(new PracticeTest(testArray[i])) 
     }
+    return finalTestArray;
 }
 
 // receives a real javascript array of PracticeTest objects and writes them to JSON
 export function writeTestArray(testArray) {
-    fs.writeFileSync('./src/Test.json', testArray)
+    const stringData = JSON.stringify(testArray);
+    fs.writeFileSync('./src/Tests.json', stringData);
+}
+
+export function clearStorage() {
+    const emptyArr = [];
+    fs.writeFileSync('./src/Tests.json', JSON.stringify(emptyArr))
 }
 
 
