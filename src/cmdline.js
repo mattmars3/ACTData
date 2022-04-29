@@ -2,11 +2,11 @@ import yargs from "yargs"
 import chalk from "chalk"
 import inquirer from "inquirer"
 
-function getAction() {
+function getInitialAction() {
     inquirer
         .prompt([
             { type: 'list', message: "What would you like to do?", name: 'command', choices: [
-                'Print Scores',
+                'Add Score',
                 'Print Average for Test',
                 'Print last test date'
             ] }

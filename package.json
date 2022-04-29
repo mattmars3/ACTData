@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Messiman7/ACTData#readme",
   "dependencies": {
     "chalk": "^5.0.1",
+    "fs": "0.0.1-security",
     "inquirer": "^8.2.3",
     "yargs": "^17.4.1"
   }

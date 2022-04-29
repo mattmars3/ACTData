@@ -1,6 +1,6 @@
 //  This class represents a practice test and has all field 
 export default class PracticeTest {
-    constructor(subject, amntCorrect, totalQuest, timeTaken, notes="", date="") {
+    static createObjectForConstructor(subject, amntCorrect, totalQuest, timeTaken, notes="", date="") {
         // ensure that the amount of questions correct and total amount of questions are valid
         if (parseInt(totalQuest) == NaN || parseInt(amntCorrect) == NaN) {
             return false;
@@ -18,13 +18,23 @@ export default class PracticeTest {
         const timeArr = timeTaken.split(":")
         const timeSeconds = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
 
-        // actually construct and return the practiceTest object
-        this.subject = subject.toLowerCase(); // subject name in lower case
-        this.amntCorrect = parseInt(amntCorrect); // amount correct
-        this.totalQuestions = parseInt(totalQuest); // total amount of questions
-        this.timeToComplete = timeSeconds; // time used to complete the questions in seconds
-        this.practiceDate = parsedDate; // date of the practice in order YYYY-MM-DD
-        this.notes = notes;
+        return {
+            subject: subject.toLowerCase(), // subject name in lower case
+            amntCorrect: parseInt(amntCorrect), // amount correct
+            totalQuestions: parseInt(totalQuest), // total amount of questions
+            timeToComplete: timeSeconds, // time used to complete the questions in seconds
+            practiceDate: parsedDate, // date of the practice in order YYYY-MM-DD
+            notes: notes // any additional notes;
+        }
+    }
+
+    constructor(object) {
+        this.subject = object.subject;
+        this.amntCorrect = object.amntCorrect;
+        this.totalQuestions = object.totalQuestions;
+        this.timeToComplete = object.timeToComplete;
+        this.practiceDate = object.practiceDate;
+        this.notes = object.notes;
     }
 
     // Turn the practice time from seconds to a colonized time
@@ -54,7 +64,7 @@ export default class PracticeTest {
     }
 
     getNotes() {
-        if (notes == "") {
+        if (this.notes == "") {
             return "No notes."
         } else {
             return this.notes;
