@@ -3,24 +3,19 @@
 // at the beginning of the program it will import the json file
 // when a test is added it will write the the program and terminate
 
-import PracticeTest from './PracticeTest.js';
-import { getTestArray, writeTestArray, clearStorage } from './store.js';
-import { TestList } from './TestList.js'
+import { getInitialAction } from './cmdline.js'
 
-const myTestList = new TestList();
-myTestList.setTestArray();
-myTestList.printSummaries();
 
 /*
-clearStorage()
+// create basic functionality
+const myTestList = new TestList();
+myTestList.setTestArrayFromJSON();
 
-const myTestArray = getTestArray();
-for (let i = 0; i < myTestArray.length; i++) {
-    console.log(myTestArray[i].printSummary())
-}
+// test functionality
+myTestList.addTest("math", 39, 40, "55:50", "This is a random string of text that contains many words.")
 
-const one = new PracticeTest(PracticeTest.createObjectForConstructor("english", 70, 75, '38:30'))
-myTestArray.push(one)
+// myTestList.writeTestArrayToJSON();
 
-writeTestArray(myTestArray)
 */
+console.log(getInitialAction())
+

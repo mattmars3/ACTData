@@ -59,10 +59,12 @@ export default class PracticeTest {
         return this.subject.substring(0, 1).toUpperCase() + this.subject.substring(1);
     }
 
+    // returns the score as a string in fraction format
     getScoreString() {
         return this.amntCorrect.toString() + "/" + this.totalQuestions.toString();
     }
 
+    // returns notes or, if there arent any, returns "No notes."
     getNotes() {
         if (this.notes == "") {
             return "No notes."
@@ -71,7 +73,13 @@ export default class PracticeTest {
         }
     }
 
+    setNotes(newNotes) {
+        this.notes = newNotes.toString();
+    }
+
+    // SHOULD ONLY BE USED FOR DEBUGGING - prints attributes
     printSummary() {
+        console.log("-----------------")
         console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString())
         console.log("Time: " + this.practiceTimeToString(true))
         console.log("Notes: " + this.getNotes())
