@@ -4,13 +4,14 @@ import PracticeTest from './PracticeTest.js';
 import { getTestArray, writeTestArray, clearStorage } from './store.js';
 import { TestList } from './TestList.js'
 
-let theTestList = [];
+let theTestObject = [];
 
 export function getTestList(testList) {
     theTestList = testList;
 }
 
 export function getInitialAction() {
+    let testVar = {}
     inquirer
         .prompt([
             { type: 'list', message: "What would you like to do?", name: 'initialAction', choices: [
@@ -21,10 +22,9 @@ export function getInitialAction() {
             ] }
         ])
         .then(answers => {
-            if (answers["initialAction"] == 'Add a Test') {
-                addATest()
-            }
+            testVar = answers;
         });
+    return testVar;
 }
 
 function addATest() {
@@ -34,9 +34,9 @@ function addATest() {
             { type: 'input', message: "Enter number of correct questions", name: 'amntCorrect'},
             { type: 'input', message: "Enter total number of questions", name: 'totalQuestions'},
             { type: 'input', message: 'Enter time to complete test', name: 'timeToComplete'},
+            { type: 'confirm', message: "Was this test today?", name: 'wasToday'}
         ])
         .then(answers => {
-            console.log(answers)
+
         })
 }
-
