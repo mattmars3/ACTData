@@ -1,6 +1,6 @@
 //  This class represents a practice test and has all field 
 export default class PracticeTest {
-    static createObjectForConstructor(subject, amntCorrect, totalQuest, timeTaken, notes="", date="") {
+    static createObjectForConstructor(subject, amntCorrect, totalQuest, timeTaken, id, notes, date) {
         // ensure that the amount of questions correct and total amount of questions are valid
         if (parseInt(totalQuest) == NaN || parseInt(amntCorrect) == NaN) {
             return false;
@@ -10,9 +10,11 @@ export default class PracticeTest {
         // standardize the date and set it as a string because you cannot have Date objects in json
         const todayDate = new Date();
         let parsedDate;
-        if (date == "") {
-            parsedDate = `${todayDate.getFullYear()}-${todayDate.getMonth()}-${todayDate.getDate()}`
+        if (date == "today") {
+            parsedDate = `${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`
         } else { parsedDate = date; }
+
+        let newNotes = notes == "No notes" ? "" : notes;
 
         // turn timeTaken into seconds
         const timeArr = timeTaken.split(":")
@@ -24,7 +26,8 @@ export default class PracticeTest {
             totalQuestions: parseInt(totalQuest), // total amount of questions
             timeToComplete: timeSeconds, // time used to complete the questions in seconds
             practiceDate: parsedDate, // date of the practice in order YYYY-MM-DD
-            notes: notes // any additional notes;
+            notes: newNotes, // any additional notes;
+            id: id
         }
     }
 
@@ -35,6 +38,7 @@ export default class PracticeTest {
         this.timeToComplete = object.timeToComplete;
         this.practiceDate = object.practiceDate;
         this.notes = object.notes;
+        this.id = object.id;
     }
 
     // Turn the practice time from seconds to a colonized time
@@ -52,11 +56,15 @@ export default class PracticeTest {
     // return the date taken as a date object
     getPracticeDateObject() {
         const theDate = this.getDateString().split("-")
-        return new Date(theDate[0], theDate[1], theDate[2]);
+        return new Date(theDate[0], theDate[1] - 1, theDate[2]);
     }
 
     getSubject() {
         return this.subject.substring(0, 1).toUpperCase() + this.subject.substring(1);
+    }
+
+    getID() {
+        return this.id;
     }
 
     // returns the score as a string in fraction format
@@ -80,8 +88,9 @@ export default class PracticeTest {
     // SHOULD ONLY BE USED FOR DEBUGGING - prints attributes
     printSummary() {
         console.log("-----------------")
-        console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString())
-        console.log("Time: " + this.practiceTimeToString(true))
-        console.log("Notes: " + this.getNotes())
+        console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString());
+        console.log("Time: " + this.practiceTimeToString(true));
+        console.log("ID: " + this.id);
+        console.log("Notes: " + this.getNotes());
     }
 }

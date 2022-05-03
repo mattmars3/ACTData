@@ -3,7 +3,7 @@ Have a class that represents a test
 
 Libraries to use
 - Inquirer to prompt the user
-- 
+- Chalk
 
 --- Prompt the user ---
 What would you like to do?
@@ -12,6 +12,20 @@ What would you like to do?
         Enter Answers correct
         Enter Total questions
         Was it today? (y/N)
+            y - add object
+            n - prompt for the date (could use inquirer date plugin)
+    Display tests for certain date
+        prompt for the date
+            display the tests
+    Display tests for a Subject
+        prompt for the Subject
+            Display the tests
+    Show trends for a subject
+        prompt for subject
+
+    Implement a coaching process
+    
+    Days until ACT (good motivation)
 
 What is complete:
 - The PracticeTest class
@@ -19,6 +33,7 @@ What is complete:
 
 What to do next!
 - Continue working on the TestList class
+- add algorithms for search and sort
 - polish the entire program
 - work on the UI
 

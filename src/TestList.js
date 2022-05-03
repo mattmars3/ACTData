@@ -18,10 +18,19 @@ export class TestList {
         return this.testArray;
     }
 
+    generateID() {
+        let largest = 1;
+        for (let i in this.testArray) {
+            if (this.testArray[i].getID() > largest) {
+                largest = this.testArray[i].getID();
+            }
+        }
+        return largest+1;
+    }
     // add a PracticeTest object and push it to the testArray object
-    addTest(subject, amntCorrect, totQuestions, timeTaken, notes="", date="") {
+    addTest(subject, amntCorrect, totQuestions, timeTaken, notes="none", date="today") {
         this.testArray.push(new PracticeTest(PracticeTest.createObjectForConstructor(
-            subject, amntCorrect, totQuestions, timeTaken, notes, date
+            subject, amntCorrect, totQuestions, timeTaken, generateID(), notes, date
         )))
     }
 
@@ -52,4 +61,19 @@ export class TestList {
                 ele => ele.getNotes().search(noteToSearch) == -1
             )
     }
+
+    removeTestByID(id) {
+        for (let i in this.testArray) {
+            if (this.testArray[i].getID() == id) {
+                this.testArray.splice(i, 1)
+            }
+        }
+    }
+
+    getTestByID(id) {
+        for (let i in this.testArray) {
+            if (this.testArray[i].getID() == id) {return this.testArray[i]}
+        }
+    }
+
 }
