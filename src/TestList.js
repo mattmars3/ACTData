@@ -28,9 +28,9 @@ export class TestList {
         return largest+1;
     }
     // add a PracticeTest object and push it to the testArray object
-    addTest(subject, amntCorrect, totQuestions, timeTaken, notes="none", date="today") {
+    addTest(subject, amntCorrect, totQuestions, timeTaken, notes, date) {
         this.testArray.push(new PracticeTest(PracticeTest.createObjectForConstructor(
-            subject, amntCorrect, totQuestions, timeTaken, generateID(), notes, date
+            subject, amntCorrect, totQuestions, timeTaken, this.generateID(), notes, date
         )))
     }
 
@@ -38,6 +38,7 @@ export class TestList {
         writeTestArray(this.testArray)
     }
 
+    // prints the summaries of each test with chalk
     printSummaries() {
         for (let i in this.testArray) {
             this.testArray[i].printSummary();
@@ -45,14 +46,14 @@ export class TestList {
     }
 
     // returns an array of tests for a certain subject
-    returnTestsBySubject(subject) {
+    getTestsBySubject(subject) {
         const _ = []
         for (let i in this.testArray) {
-            if (this.testArray[i].getSubject() == subject.toLowerCase()) {
+            if (this.testArray[i].getSubject().toLowerCase() == subject.toLowerCase()) {
                 _.push(this.testArray[i]);
             }
-            return _;
         }
+        return _;
     }
 
     removeTestByNotes(notes) {
@@ -60,6 +61,33 @@ export class TestList {
             this.testArray = this.testArray.filter(
                 ele => ele.getNotes().search(noteToSearch) == -1
             )
+    }
+
+    getAverages() {
+        const arr = ['english', 'math', 'reading', 'science']
+        for (let i = 0; i < 4; i++) {
+            let testList = this.getTestsBySubject(arr[i])
+            let points = 0, sum = 0;
+            for (let j in testList) {
+                let score = testList[j].getScore()
+                points += score[0]; sum += score[1];
+            }
+            arr[i] = points / sum
+        }
+
+
+        for (let k in arr) {
+            if (arr[k] == NaN) {
+                console.log("asdf")
+                arr[k] = "No scores"
+            }
+        }
+        return {
+            english: arr[0],
+            math: arr[1],
+            reading: arr[2],
+            science: arr[3]
+        };
     }
 
     removeTestByID(id) {

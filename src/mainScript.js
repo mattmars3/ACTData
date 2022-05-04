@@ -22,6 +22,8 @@ const myTestList = new TestList();
 // load all of the tests from JSON
 myTestList.setTestArrayFromJSON();
 
+console.log(args[6])
+
 // determine what the command is and do that action
 switch (doThis) {
     case 'addATest':

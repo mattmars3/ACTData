@@ -1,3 +1,5 @@
+import chalk from 'chalk'
+
 //  This class represents a practice test and has all field 
 export default class PracticeTest {
     static createObjectForConstructor(subject, amntCorrect, totalQuest, timeTaken, id, notes, date) {
@@ -59,6 +61,10 @@ export default class PracticeTest {
         return new Date(theDate[0], theDate[1] - 1, theDate[2]);
     }
 
+    getScore() {
+        return [this.amntCorrect, this.totalQuestions];
+    }
+
     getSubject() {
         return this.subject.substring(0, 1).toUpperCase() + this.subject.substring(1);
     }
@@ -88,9 +94,10 @@ export default class PracticeTest {
     // SHOULD ONLY BE USED FOR DEBUGGING - prints attributes
     printSummary() {
         console.log("-----------------")
-        console.log(this.getSubject() + " Practice Test on " + this.practiceDate + "\nScore: " + this.getScoreString());
-        console.log("Time: " + this.practiceTimeToString(true));
-        console.log("ID: " + this.id);
-        console.log("Notes: " + this.getNotes());
+        console.log(chalk.red(this.getSubject()) + " Practice Test on " + chalk.red(this.practiceDate));
+        console.log("Score: " + chalk.red(this.getScoreString()));
+        console.log("Time: " + chalk.red(this.practiceTimeToString(true)));
+        console.log("ID: " + chalk.red(this.id));
+        console.log("Notes: " + chalk.red(this.getNotes()));
     }
 }
